@@ -18,10 +18,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTitleLoguer">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextUser"
+            android:id="@+id/editTextCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/usuario" />
+            android:hint="@string/correoElectronico" />
         <requestFocus />
     </com.google.android.material.textfield.TextInputLayout>
 

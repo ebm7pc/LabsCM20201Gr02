@@ -8,7 +8,7 @@
     <string name="contrasena">Contraseña</string>
     <string name="correoElectronico">Correo Electrónico</string>
     <string name="RegRegistro">REGISTRO</string>
-    <string name="guardar">Guardar</string>
+    <string name="registrar">Registrar</string>
     <string name="title_activity_home">Home</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
