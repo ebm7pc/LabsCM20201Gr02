@@ -65,12 +65,11 @@ dependencies {
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
-    implementation 'android.arch.persistence.room:runtime:1.1.1'
+
     implementation "androidx.room:room-ktx:2.2.5"
     kapt "androidx.room:room-compiler:2.2.5"
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    //implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
 }
 

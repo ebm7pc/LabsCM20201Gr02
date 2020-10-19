@@ -13,7 +13,7 @@ import co.edu.udea.compumovil.gr02_20201.lab2.Config.Lab2App
 class MainActivity : AppCompatActivity() {
     private lateinit var textUser: EditText
     private lateinit var textPass: EditText
-    val ejecutaDB=applicationContext as Lab2App
+    //val ejecutaDB=applicationContext as Lab2App
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
