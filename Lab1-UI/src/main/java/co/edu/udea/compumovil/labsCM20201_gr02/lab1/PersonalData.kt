@@ -5,7 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -43,11 +43,11 @@ class PersonalData : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         val userText = editTextDate.text
-        outState?.putCharSequence("savedText", userText)
+        outState.putCharSequence("savedText", userText)
     }
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        val userText = savedInstanceState?.getCharSequence("savedText")
+        val userText = savedInstanceState.getCharSequence("savedText")
         editTextDate.text = userText
         fechaLog = userText.toString()
     }
@@ -104,7 +104,7 @@ class PersonalData : AppCompatActivity() {
      * de un spinner
      */
     fun spinnerEstudio(){
-        seleccion = findViewById(R.id.spinner_estudio) as Spinner
+        seleccion = findViewById<Spinner>(R.id.spinner_estudio)
         //resultado = findViewById(R.id.textViewSpinner) as TextView
         val opciones = arrayOf("Grado de escolaridad","Primaria","Secundaria","Universitaria", "Otro")
         seleccion.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, opciones)

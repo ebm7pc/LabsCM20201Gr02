@@ -14,6 +14,10 @@ import co.edu.udea.compumovil.gr02_20201.lab2.Dao.UserDao
 import co.edu.udea.compumovil.gr02_20201.lab2.DataBase.LaboratorioDosDB
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * Actividad principal, en esta actividad se incia sesión para ir a la lista y se va hacia el
+ * registro de un nuevo usuariuo
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var textEmail: EditText
     private lateinit var textPass: EditText
@@ -21,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var db: UserDao
     private lateinit var dataBase:LaboratorioDosDB
 
+    /**
+     * Se inicializan variables y base de datos
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         buttonLogin.setOnClickListener { controlBotonStart(it) }
     }
 
+    /**
+     * Acciones que se realizan al presionar el botón de iniciar sesión
+     */
     private fun controlBotonStart(view: View){
         if (validaDatos()){
             actividadInicio()
@@ -40,11 +50,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Función que llama a otra función para inciar la actividadd de crear registro
+     */
     private fun preparaInfo(view: View){
         actividadRegistro()
         Toast.makeText(this, "Hecho!", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * Función para obtener los datos de la BD y validar el inicio de sesión
+     */
     private fun actividadInicio(){
         val email = editTextCorreo.text.toString().trim { it <= ' ' }
         val password = editTextPassword.text.toString().trim { it <= ' ' }
@@ -58,6 +74,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Valida que los campos de inicio de sesión no estén vacíoss
+     */
     private fun validaDatos():Boolean{
         var retorno=true
         val c1=textEmail.text.toString()
@@ -75,6 +94,9 @@ class MainActivity : AppCompatActivity() {
         return retorno
     }
 
+    /**
+     * Llamado a la actividad de crear registro
+     */
     fun actividadRegistro(){
         val intent : Intent = Intent(this, ActivityRegistry::class.java)
         startActivity(intent)

@@ -1,6 +1,6 @@
 package co.edu.udea.compumovil.labsCM20201_gr02.lab1
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -23,11 +23,11 @@ class ContactData : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         val telefonoText = telefono.text
-        outState?.putCharSequence("savedText", telefonoText)
+        outState.putCharSequence("savedText", telefonoText)
     }
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        val telefonoText = savedInstanceState?.getCharSequence("savedText")
+        val telefonoText = savedInstanceState.getCharSequence("savedText")
         telefono.text = telefonoText as Editable?
     }
 
