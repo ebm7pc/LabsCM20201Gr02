@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.grXX_20201.lab3.Entidades
+package co.edu.udea.compumovil.gr02_20201.lab3.Entidades
 
 import java.io.Serializable
 

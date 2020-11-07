@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registryFragment2"
+            app:destination="@id/registryFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_personasFragment"
+            app:destination="@id/personasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registryFragment"
+        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.RegistryFragment"
+        android:label="fragment_registry"
+        tools:layout="@layout/fragment_registry" >
+        <action
+            android:id="@+id/action_registryFragment_to_loginFragment2"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personasFragment"
+        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.PersonasFragment"
+        android:label="PersonasFragment"
+        tools:layout="@layout/fragment_personas">
+        <action
+            android:id="@+id/action_personasFragment_to_detallePersonaFragment"
+            app:destination="@id/detallePersonaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detallePersonaFragment"
+        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetallePersonaFragment"
+        android:label="fragment_detalle_persona"
+        tools:layout="@layout/fragment_detalle_persona" >
+        <action
+            android:id="@+id/action_detallePersonaFragment_to_personasFragment"
+            app:destination="@id/personasFragment" />
+    </fragment>
+
+</navigation>

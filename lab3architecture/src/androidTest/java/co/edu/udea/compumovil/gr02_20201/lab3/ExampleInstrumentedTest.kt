@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.grXX_20201.lab3
+package co.edu.udea.compumovil.gr02_20201.lab3
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

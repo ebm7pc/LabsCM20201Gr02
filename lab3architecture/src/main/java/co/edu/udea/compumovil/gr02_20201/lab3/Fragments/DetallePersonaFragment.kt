@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.grXX_20201.lab3.Fragments
+package co.edu.udea.compumovil.gr02_20201.lab3.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import co.edu.udea.compumovil.grXX_20201.lab3.Entidades.Persona
-import co.edu.udea.compumovil.grXX_20201.lab3.R
+import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Persona
+import co.edu.udea.compumovil.gr02_20201.lab3.R
 
 class DetallePersonaFragment : Fragment() {
     var nombre: TextView? = null
@@ -19,7 +19,7 @@ class DetallePersonaFragment : Fragment() {
         imagen = view.findViewById(R.id.imagen_detalleid)
         //Crear bundle para recibir el objeto enviado por parametro.
         val objetoPersona = arguments
-        var persona: Persona? = null
+        var persona: Persona?
         //validacion para verificar si existen argumentos para mostrar
         if (objetoPersona != null) {
             persona = objetoPersona.getSerializable("objeto") as Persona

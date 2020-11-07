@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.grXX_20201.lab3.Fragments
+package co.edu.udea.compumovil.gr02_20201.lab3.Fragments
 
 import android.app.Activity
 import android.content.Context
@@ -11,12 +11,12 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import co.edu.udea.compumovil.grXX_20201.lab3.Adaptadores.AdapterPersonas
-import co.edu.udea.compumovil.grXX_20201.lab3.Entidades.Persona
-import co.edu.udea.compumovil.grXX_20201.lab3.Interfaces.iComunicaFragments
+import co.edu.udea.compumovil.gr02_20201.lab3.Adaptadores.AdapterPersonas
+import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Persona
+import co.edu.udea.compumovil.gr02_20201.lab3.Interfaces.iComunicaFragments
 
 
-import co.edu.udea.compumovil.grXX_20201.lab3.R
+import co.edu.udea.compumovil.gr02_20201.lab3.R
 import java.util.ArrayList
 
 class PersonasFragment : Fragment() {
@@ -53,7 +53,7 @@ class PersonasFragment : Fragment() {
         recyclerViewPersonas!!.layoutManager = LinearLayoutManager(context)
         adapterPersonas = AdapterPersonas(context, listaPersonas!!)
         recyclerViewPersonas!!.adapter = adapterPersonas
-        adapterPersonas!!.setOnclickListener { view ->
+        adapterPersonas!!.setOnclickListener {view ->
             val nombre = listaPersonas!![recyclerViewPersonas!!.getChildAdapterPosition(view)].nombre
             txtnombre!!.setText(nombre)
             Toast.makeText(context, "Seleccionó: " + listaPersonas!![recyclerViewPersonas!!.getChildAdapterPosition(view)].nombre, Toast.LENGTH_SHORT).show()

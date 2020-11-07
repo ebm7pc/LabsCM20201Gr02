@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.grXX_20201.lab3.Adaptadores
+package co.edu.udea.compumovil.gr02_20201.lab3.Adaptadores
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import co.edu.udea.compumovil.grXX_20201.lab3.Entidades.Persona
-import co.edu.udea.compumovil.grXX_20201.lab3.R
+import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Persona
+import co.edu.udea.compumovil.gr02_20201.lab3.R
 import java.util.*
 
 class AdapterPersonas(context: Context?, model: ArrayList<Persona>) : RecyclerView.Adapter<AdapterPersonas.ViewHolder>(), View.OnClickListener {

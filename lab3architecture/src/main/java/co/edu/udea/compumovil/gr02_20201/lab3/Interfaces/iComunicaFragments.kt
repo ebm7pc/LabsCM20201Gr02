@@ -1,6 +1,6 @@
-package co.edu.udea.compumovil.grXX_20201.lab3.Interfaces
+package co.edu.udea.compumovil.gr02_20201.lab3.Interfaces
 
-import co.edu.udea.compumovil.grXX_20201.lab3.Entidades.Persona
+import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Persona
 
 interface iComunicaFragments {
     //esta interface se encarga de realizar la comunicacion entre la lista de personas y el detalle

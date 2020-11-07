@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="registro">¡Regístrate!</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="correoElectronico">Correo Electrónico</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+</resources>
