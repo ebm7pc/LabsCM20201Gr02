@@ -1,33 +1,31 @@
 package co.edu.udea.compumovil.gr02_20201.lab3.Fragments
 
-import android.content.Intent
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.room.Room
-import co.edu.udea.compumovil.gr02_20201.lab3.LoginActivity
 import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao
 import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
 import co.edu.udea.compumovil.gr02_20201.lab3.R
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class LoginFragment : Fragment() {
-
     private lateinit var textEmail: EditText
     private lateinit var textPass: EditText
     private lateinit var buttonLogin: Button
+    private lateinit var linkRegister: TextView
     private lateinit var dataBase: LabTresDB
     private lateinit var db: UserDao
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
@@ -35,14 +33,15 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         textEmail= view.findViewById(R.id.editTextCorreo)
         textPass= view.findViewById(R.id.editTextPassword)
         buttonLogin= view.findViewById(R.id.buttonStart)
+        linkRegister= view.findViewById<TextView>(R.id.textViewRegister)
         dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, "miBD").allowMainThreadQueries().build()
         db= dataBase.usuarioDao()
-        view.findViewById<TextView>(R.id.textViewRegister).setOnClickListener {  }
+        //view.findViewById<TextView>(R.id.textViewRegister).setOnClickListener {  }
         buttonLogin.setOnClickListener { controlBotonStart(it) }
+        linkRegister.setOnClickListener { lanzaFragmentRegistro() }
 
     }
 
@@ -52,8 +51,27 @@ class LoginFragment : Fragment() {
     private fun controlBotonStart(view: View){
         if (validaDatos()){
             actividadInicio()
-            Toast.makeText(requireActivity(),"Exito!", Toast.LENGTH_SHORT).show()
+            hideKeyboard()
         }
+    }
+
+    private fun lanzaFragmentRegistro(){
+        val fragmentRegistro= RegistryFragment()
+        val fragmentManager= requireActivity().supportFragmentManager
+        val fragmentTransaction= fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container_fragment, fragmentRegistro)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+        hideKeyboard()
+    }
+
+    private fun lanzaFragmentLugares(){
+        val fragmentLugares= PersonasFragment()
+        val fragmentManager= requireActivity().supportFragmentManager
+        val fragmentTransaction= fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container_fragment, fragmentLugares)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     /**
@@ -64,24 +82,17 @@ class LoginFragment : Fragment() {
         val password = editTextPassword.text.toString().trim { it <= ' ' }
         val user = db.getUser(email, password)
         if (user != null) {
-            val i = Intent(requireActivity(), LoginActivity::class.java)
-            startActivity(i)
-            activity?.finish()
+            lanzaFragmentLugares()
+            Toast.makeText(requireActivity(),"Exito!", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(requireActivity(), "Sus datos son incorrectos", Toast.LENGTH_LONG).show()
+            textEmail.error="No existe o error al escribir datos"
+            textPass.error="No existe o error al escribir datos"
         }
     }
 
     /**
-     * Llamado a la actividad de crear registro
-     */
-    fun actividadRegistro(){
-        val intent : Intent = Intent(requireActivity(), LoginActivity::class.java)
-        startActivity(intent)
-    }
-
-    /**
-     * Valida que los campos de inicio de sesión no estén vacíoss
+     * Valida que los campos de inicio de sesión no estén vacíos
      */
     private fun validaDatos():Boolean{
         var retorno=true
@@ -89,7 +100,7 @@ class LoginFragment : Fragment() {
         val c2=textPass.text.toString()
         if(c1.isNullOrEmpty()){
             retorno=false
-            textEmail.error="Ingrese un usuario"
+            textEmail.error="Ingrese un correo"
             Toast.makeText(requireActivity(), "Faltan datos", Toast.LENGTH_SHORT)
         }
         if(c2.isNullOrEmpty()){
@@ -98,5 +109,13 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(), "Faltan datos", Toast.LENGTH_SHORT).show()
         }
         return retorno
+    }
+
+    fun Fragment.hideKeyboard(){
+        view?.let { activity?.hideKeyBoard(it) }
+    }
+    fun Context.hideKeyBoard(view: View){
+        val imm= getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

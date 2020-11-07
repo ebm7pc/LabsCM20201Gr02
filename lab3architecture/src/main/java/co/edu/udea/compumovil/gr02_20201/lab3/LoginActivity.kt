@@ -39,7 +39,6 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         drawerLayout!!.addDrawerListener(actionBarDrawerToggle!!)
         actionBarDrawerToggle!!.isDrawerIndicatorEnabled = true
         actionBarDrawerToggle!!.syncState()
-
         //cargar fragment principal en la actividad
         fragmentManager = supportFragmentManager
         fragmentTransaction = fragmentManager!!.beginTransaction()
@@ -77,7 +76,7 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         bundleEnvio.putSerializable("objeto", persona)
         detallePersonaFragment!!.arguments = bundleEnvio
 
-        //CArgar fragment en el activity
+        //Cargar fragment en el activity
         fragmentManager = supportFragmentManager
         fragmentTransaction = fragmentManager!!.beginTransaction()
         fragmentTransaction!!.replace(R.id.container_fragment, detallePersonaFragment!!)
