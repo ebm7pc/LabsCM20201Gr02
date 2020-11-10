@@ -15,7 +15,7 @@
             app:destination="@id/registryFragment" />
         <action
             android:id="@+id/action_loginFragment_to_personasFragment"
-            app:destination="@id/personasFragment" />
+            app:destination="@id/lugaresFragment" />
     </fragment>
     <fragment
         android:id="@+id/registryFragment"
@@ -27,22 +27,22 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/personasFragment"
-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.PersonasFragment"
+        android:id="@+id/lugaresFragment"
+        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LugaresFragment"
         android:label="PersonasFragment"
-        tools:layout="@layout/fragment_personas">
+        tools:layout="@layout/fragment_lugares">
         <action
-            android:id="@+id/action_personasFragment_to_detallePersonaFragment"
-            app:destination="@id/detallePersonaFragment" />
+            android:id="@+id/action_lugaresFragment_to_detalleLugarFragment"
+            app:destination="@id/detalleLugarFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detallePersonaFragment"
-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetallePersonaFragment"
-        android:label="fragment_detalle_persona"
-        tools:layout="@layout/fragment_detalle_persona" >
+        android:id="@+id/detalleLugarFragment"
+        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetalleLugarFragment"
+        android:label="fragment_detalle_lugar"
+        tools:layout="@layout/fragment_detalle_lugar" >
         <action
             android:id="@+id/action_detallePersonaFragment_to_personasFragment"
-            app:destination="@id/personasFragment" />
+            app:destination="@id/lugaresFragment" />
     </fragment>
 
 </navigation>

@@ -16,7 +16,6 @@ import androidx.room.Room
 import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao
 import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
 import co.edu.udea.compumovil.gr02_20201.lab3.R
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
@@ -66,7 +65,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun lanzaFragmentLugares(){
-        val fragmentLugares= PersonasFragment()
+        val fragmentLugares= LugaresFragment()
         val fragmentManager= requireActivity().supportFragmentManager
         val fragmentTransaction= fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container_fragment, fragmentLugares)

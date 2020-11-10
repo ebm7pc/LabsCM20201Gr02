@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
         <ImageView
-            android:id="@+id/imagen_persona"
+            android:id="@+id/imagen_lugar"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/gohan_cara1">
@@ -20,26 +20,26 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/nombres"
+            android:id="@+id/lugares"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre de la Persona"
+            android:text="Nombre del lugar"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_toRightOf="@id/imagen_persona"
-            android:layout_toEndOf="@id/imagen_persona"
+            android:layout_toRightOf="@id/imagen_lugar"
+            android:layout_toEndOf="@id/imagen_lugar"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp">
         </TextView>
 
         <TextView
-            android:id="@+id/fechanacimiento"
+            android:id="@+id/descrip_corta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2020-01-20"
-            android:layout_toRightOf="@id/imagen_persona"
-            android:layout_toEndOf="@id/imagen_persona"
-            android:layout_below="@+id/nombres"
+            android:layout_toRightOf="@id/imagen_lugar"
+            android:layout_toEndOf="@id/imagen_lugar"
+            android:layout_below="@+id/lugares"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp">
         </TextView>

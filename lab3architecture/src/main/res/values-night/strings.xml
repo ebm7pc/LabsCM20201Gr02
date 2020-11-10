@@ -5,4 +5,5 @@
     <string name="correoElectronico">Correo Electrónico</string>
     <string name="iniciar">Iniciar</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>

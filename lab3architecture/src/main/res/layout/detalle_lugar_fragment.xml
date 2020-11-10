@@ -5,7 +5,7 @@
     android:layout_marginTop="55dp">
 
     <TextView
-        android:text="Detalle Persona"
+        android:text="Detalle del Lugar"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -26,7 +26,8 @@
     </ImageView>
 
     <TextView
-        android:text="Nombre:"
+        android:id="@+id/nombre_lugar"
+        android:text="Lugar:"
         android:paddingLeft="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -35,8 +36,8 @@
 
     </TextView>
     <TextView
-        android:id="@+id/nombre_detalle"
-        android:text="Goku"
+        android:id="@+id/descripcion_larga"
+        android:text="descripción aquí"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"

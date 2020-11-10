@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Persona
+import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Lugar
 import co.edu.udea.compumovil.gr02_20201.lab3.R
 import java.util.*
 
-class AdapterPersonas(context: Context?, model: ArrayList<Persona>) : RecyclerView.Adapter<AdapterPersonas.ViewHolder>(), View.OnClickListener {
+class AdapterLugares(context: Context?, model: ArrayList<Lugar>) : RecyclerView.Adapter<AdapterLugares.ViewHolder>(), View.OnClickListener {
     var inflater: LayoutInflater
-    var model: ArrayList<Persona>
+    var model: ArrayList<Lugar>
     private var listener: View.OnClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = inflater.inflate(R.layout.lista_personas, parent, false)
+        val view = inflater.inflate(R.layout.lista_lugares, parent, false)
         view.setOnClickListener(this)
         return ViewHolder(view)
     }
@@ -27,10 +27,10 @@ class AdapterPersonas(context: Context?, model: ArrayList<Persona>) : RecyclerVi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nombres = model[position].nombre
-        val fechanacimiento = model[position].fechanacimiento
+        val descripCorta = model[position].descripCorta
         val imageid = model[position].imagenid
         holder.nombres.text = nombres
-        holder.fechancimiento.text = fechanacimiento
+        holder.descCorta.text = descripCorta
         holder.imagen.setImageResource(imageid)
     }
 
@@ -46,13 +46,13 @@ class AdapterPersonas(context: Context?, model: ArrayList<Persona>) : RecyclerVi
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nombres: TextView
-        var fechancimiento: TextView
+        var descCorta: TextView
         var imagen: ImageView
 
         init {
-            nombres = itemView.findViewById(R.id.nombres)
-            fechancimiento = itemView.findViewById(R.id.fechanacimiento)
-            imagen = itemView.findViewById(R.id.imagen_persona)
+            nombres = itemView.findViewById(R.id.lugares)
+            descCorta = itemView.findViewById(R.id.descrip_corta)
+            imagen = itemView.findViewById(R.id.imagen_lugar)
         }
     }
 

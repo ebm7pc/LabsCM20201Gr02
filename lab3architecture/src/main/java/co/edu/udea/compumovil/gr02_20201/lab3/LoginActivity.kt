@@ -9,10 +9,10 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Persona
-import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetallePersonaFragment
+import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Lugar
+import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetalleLugarFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LoginFragment
-import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.PersonasFragment
+import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LugaresFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Interfaces.iComunicaFragments
 import com.google.android.material.navigation.NavigationView
 
@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     var navigationView: NavigationView? = null
     var fragmentManager: FragmentManager? = null
     var fragmentTransaction: FragmentTransaction? = null
-    var detallePersonaFragment: DetallePersonaFragment? = null
+    var detalleLugarFragment: DetalleLugarFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,27 +59,27 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         if (menuItem.itemId == R.id.configuracion) {
             fragmentManager = supportFragmentManager
             fragmentTransaction = fragmentManager!!.beginTransaction()
-            fragmentTransaction!!.replace(R.id.container_fragment, PersonasFragment())
+            fragmentTransaction!!.replace(R.id.container_fragment, LugaresFragment())
             fragmentTransaction!!.commit()
         }
         return false
     }
 
-    override fun enviarPersona(persona: Persona) {
-        //gracias a hbaer implementado de la interface "iComunicaFragments" se tiene la implementacion del metodo enviarPersona
+    override fun enviarLugar(lugar: Lugar) {
+        //gracias a haber implementado de la interface "iComunicaFragments" se tiene la implementacion del metodo enviarLugar
         //o mejor dicho este metodo.
         //Aqui se realiza toda la logica necesaria para poder realizar el envio
-        detallePersonaFragment = DetallePersonaFragment()
+        detalleLugarFragment = DetalleLugarFragment()
         //objeto bundle para transportar la informacion
         val bundleEnvio = Bundle()
         //se manda el objeto que le esta llegando:
-        bundleEnvio.putSerializable("objeto", persona)
-        detallePersonaFragment!!.arguments = bundleEnvio
+        bundleEnvio.putSerializable("objeto", lugar)
+        detalleLugarFragment!!.arguments = bundleEnvio
 
         //Cargar fragment en el activity
         fragmentManager = supportFragmentManager
         fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction!!.replace(R.id.container_fragment, detallePersonaFragment!!)
+        fragmentTransaction!!.replace(R.id.container_fragment, detalleLugarFragment!!)
         fragmentTransaction!!.addToBackStack(null)
         fragmentTransaction!!.commit()
 
