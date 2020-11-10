@@ -9,8 +9,14 @@ interface PlaceDao {
     @Query("SELECT * FROM Place")
     fun getPlaces(): Array<Place>
 
+    //@Query("SELECT * FROM Place")
+    //LiveData<List<Place>> getAllPlaces
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insert(lugar: Place)
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insertAll(lugar: List<Place>)
 
     @Update
     suspend fun update(lugar: Place)
