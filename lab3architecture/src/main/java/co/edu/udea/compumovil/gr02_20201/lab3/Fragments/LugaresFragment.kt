@@ -11,15 +11,21 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import co.edu.udea.compumovil.gr02_20201.lab3.Adaptadores.AdapterLugares
+import co.edu.udea.compumovil.gr02_20201.lab3.Adaptadores.AdapterPlaces
 import co.edu.udea.compumovil.gr02_20201.lab3.Descriptions
 import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Lugar
 import co.edu.udea.compumovil.gr02_20201.lab3.Interfaces.iComunicaFragments
 import co.edu.udea.compumovil.gr02_20201.lab3.LongDescriptions
-
+import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao
+import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
+import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
 
 import co.edu.udea.compumovil.gr02_20201.lab3.R
+import co.edu.udea.compumovil.gr02_20201.lab3.ioThread
 import java.util.ArrayList
+import java.util.concurrent.Executors
 
 class LugaresFragment : Fragment() {
     //private OnFragmentInteractionListener mListener;
@@ -30,17 +36,35 @@ class LugaresFragment : Fragment() {
     //Crear referencias para poder realizar la comunicacion entre el fragment detalle
     var actividad: Activity? = null
     var interfaceComunicaFragments: iComunicaFragments? = null
+    private lateinit var dataBase: LabTresDB
+    private lateinit var db: PlaceDao
+
+    private val IO_EXECUTOR= Executors.newSingleThreadExecutor()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_lugares, container, false)
         txtnombre = view.findViewById(R.id.txtlugar)
         recyclerViewLugares = view.findViewById(R.id.recyclerView)
         listaLugares = ArrayList()
+        ioThreaded{}
         cargarLista()
         mostrarData()
         return view
     }
 
+    fun ioThreaded(f : () -> Unit) {
+        IO_EXECUTOR.execute(f)
+    }
+
+    fun cargaLista(){
+        var nombre: String?
+        var desC: String?
+        var desL: String?
+        var img: Int
+        dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, "miBD").allowMainThreadQueries().build()
+        db= dataBase.lugarDao()
+        val lugares= db.getPlaces()
+    }
     fun cargarLista() {
         listaLugares!!.add(Lugar("Santorini", Descriptions().santorini, LongDescriptions().santorini, R.drawable.santorini1))
         listaLugares!!.add(Lugar("Naxos", Descriptions().naxos, LongDescriptions().naxos, R.drawable.naxos1))
@@ -52,7 +76,9 @@ class LugaresFragment : Fragment() {
     private fun mostrarData() {
         recyclerViewLugares!!.layoutManager = LinearLayoutManager(context)
         adapterLugares = AdapterLugares(context, listaLugares!!)
+        //adapterPlaces = AdapterPlaces(context,placeList!!)
         recyclerViewLugares!!.adapter = adapterLugares
+        //recyclerViewLugares!!.adapter = adapterPlaces
         adapterLugares!!.setOnclickListener { view ->
             val nombre = listaLugares!![recyclerViewLugares!!.getChildAdapterPosition(view)].nombre
             txtnombre!!.setText(nombre)

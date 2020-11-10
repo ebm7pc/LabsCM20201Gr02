@@ -14,6 +14,7 @@ import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetalleLugarFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LoginFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LugaresFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Interfaces.iComunicaFragments
+import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
 import com.google.android.material.navigation.NavigationView
 
 
@@ -82,20 +83,8 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         fragmentTransaction!!.replace(R.id.container_fragment, detalleLugarFragment!!)
         fragmentTransaction!!.addToBackStack(null)
         fragmentTransaction!!.commit()
-
-        /*
-         getSupportFragmentManager().beginTransaction()
-                 .replace(R.id.container_fragment, detallePersonaFragment)
-                 .addToBackStack(null).commit();
-        */
-        //***Luego pasar a programar al fragmentdetalle
     }
+
 }
 
-/*
-class LoginActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-    }
-}*/
+

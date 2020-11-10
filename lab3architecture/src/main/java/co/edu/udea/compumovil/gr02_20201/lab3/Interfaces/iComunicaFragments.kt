@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr02_20201.lab3.Interfaces
 
 import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Lugar
+import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
 
 interface iComunicaFragments {
     //esta interface se encarga de realizar la comunicacion entre la lista de lugares y el detalle
