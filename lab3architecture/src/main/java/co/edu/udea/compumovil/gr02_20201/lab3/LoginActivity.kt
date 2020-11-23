@@ -3,18 +3,20 @@ package co.edu.udea.compumovil.gr02_20201.lab3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Lugar
+import androidx.lifecycle.ViewModelProvider
 import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetalleLugarFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LoginFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LugaresFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.Interfaces.iComunicaFragments
 import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+import co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModel
 import com.google.android.material.navigation.NavigationView
 
 
@@ -27,9 +29,14 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     var fragmentTransaction: FragmentTransaction? = null
     var detalleLugarFragment: DetalleLugarFragment? = null
 
+    //private lateinit var viewModel: UserViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        //viewModel= ViewModelProvider(this).get(UserViewModel::class.java)
+
         toolbar = findViewById(R.id.toolbar)
         //setSupportActionBar(toolbar)
         drawerLayout = findViewById(R.id.drawer)
@@ -66,7 +73,7 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         return false
     }
 
-    override fun enviarLugar(lugar: Lugar) {
+    override fun enviarLugar(lugar: Place) {
         //gracias a haber implementado de la interface "iComunicaFragments" se tiene la implementacion del metodo enviarLugar
         //o mejor dicho este metodo.
         //Aqui se realiza toda la logica necesaria para poder realizar el envio
