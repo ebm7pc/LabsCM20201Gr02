@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import co.edu.udea.compumovil.gr02_20201.lab3.Entidades.Lugar
+import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
 import co.edu.udea.compumovil.gr02_20201.lab3.R
 
 class DetalleLugarFragment : Fragment() {
@@ -21,13 +21,13 @@ class DetalleLugarFragment : Fragment() {
         imagen = view.findViewById(R.id.imagen_detalleid)
         //Crear bundle para recibir el objeto enviado por parametro.
         val objetoLugar = arguments
-        var lugar: Lugar?
+        var lugar: Place?
         //validacion para verificar si existen argumentos para mostrar
         if (objetoLugar != null) {
-            lugar = objetoLugar.getSerializable("objeto") as Lugar
-            imagen!!.setImageResource(lugar.imagenid)
-            nombre!!.text = lugar.nombre
-            descripcion!!.text = lugar.descripLarga
+            lugar = objetoLugar.getSerializable("objeto") as Place
+            imagen!!.setImageResource(lugar.img)
+            nombre!!.text = lugar.name
+            descripcion!!.text = lugar.long_desc
         }
         return view
     }

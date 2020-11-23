@@ -2,6 +2,7 @@ package co.edu.udea.compumovil.gr02_20201.lab3.Entidades
 
 import java.io.Serializable
 
+/*
 class Lugar : Serializable {
     var nombre: String? = null
     var descripCorta: String? = null
@@ -15,4 +16,4 @@ class Lugar : Serializable {
         this.descripLarga = descripLarga
         this.imagenid = imagenid
     }
-}
+}*/
