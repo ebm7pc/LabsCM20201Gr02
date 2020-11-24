@@ -1,0 +1,659 @@
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/PlaceViewModelFactory.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/PlaceViewModelFactory.kt	(date 1606172964062)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/PlaceViewModelFactory.kt	(date 1606172964062)
+@@ -0,0 +1,14 @@
++package co.edu.udea.compumovil.gr02_20201.lab3.ViewModel
++
++import androidx.lifecycle.ViewModel
++import androidx.lifecycle.ViewModelProvider
++import co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.PlaceRepository
++
++class PlaceViewModelFactory(private val repository: PlaceRepository): ViewModelProvider.NewInstanceFactory() {
++    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
++        if (modelClass.isAssignableFrom(PlaceViewModel::class.java)){
++            return PlaceViewModel(repository) as T
++        }
++        throw IllegalArgumentException("Unknown View Model class")
++    }
++}
+\ No newline at end of file
+Index: Lab1-UI/release/output-metadata.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"version\": 2,\r\n  \"artifactType\": {\r\n    \"type\": \"APK\",\r\n    \"kind\": \"Directory\"\r\n  },\r\n  \"applicationId\": \"co.edu.udea.compumovil.gr02_20201.lab2\",\r\n  \"variantName\": \"processReleaseResources\",\r\n  \"elements\": [\r\n    {\r\n      \"type\": \"SINGLE\",\r\n      \"filters\": [],\r\n      \"versionCode\": 1,\r\n      \"versionName\": \"1.0\",\r\n      \"outputFile\": \"lab2activities-release.apk\"\r\n    }\r\n  ]\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lab1-UI/release/output-metadata.json	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ Lab1-UI/release/output-metadata.json	(date 1606105080695)
+@@ -4,7 +4,7 @@
+     "type": "APK",
+     "kind": "Directory"
+   },
+-  "applicationId": "co.edu.udea.compumovil.gr02_20201.lab2",
++  "applicationId": "co.edu.udea.compumovil.grXX_20201.lab3",
+   "variantName": "processReleaseResources",
+   "elements": [
+     {
+@@ -12,7 +12,7 @@
+       "filters": [],
+       "versionCode": 1,
+       "versionName": "1.0",
+-      "outputFile": "lab2activities-release.apk"
++      "outputFile": "lab3architecture-release.apk"
+     }
+   ]
+ }
+\ No newline at end of file
+Index: lab3architecture/src/main/res/navigation/mobile_navigation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/mobile_navigation\"\r\n    app:startDestination=\"@id/loginFragment\">\r\n\r\n    <fragment\r\n        android:id=\"@+id/loginFragment\"\r\n        android:name=\"co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LoginFragment\"\r\n        android:label=\"LoginFragment\"\r\n        tools:layout=\"@layout/fragment_login\">\r\n        <action\r\n            android:id=\"@+id/action_loginFragment_to_registryFragment2\"\r\n            app:destination=\"@id/registryFragment\" />\r\n        <action\r\n            android:id=\"@+id/action_loginFragment_to_personasFragment\"\r\n            app:destination=\"@id/lugaresFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/registryFragment\"\r\n        android:name=\"co.edu.udea.compumovil.gr02_20201.lab3.Fragments.RegistryFragment\"\r\n        android:label=\"fragment_registry\"\r\n        tools:layout=\"@layout/fragment_registry\" >\r\n        <action\r\n            android:id=\"@+id/action_registryFragment_to_loginFragment2\"\r\n            app:destination=\"@id/loginFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/lugaresFragment\"\r\n        android:name=\"co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LugaresFragment\"\r\n        android:label=\"PersonasFragment\"\r\n        tools:layout=\"@layout/fragment_lugares\">\r\n        <action\r\n            android:id=\"@+id/action_lugaresFragment_to_detalleLugarFragment\"\r\n            app:destination=\"@id/detalleLugarFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/detalleLugarFragment\"\r\n        android:name=\"co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetalleLugarFragment\"\r\n        android:label=\"fragment_detalle_lugar\"\r\n        tools:layout=\"@layout/fragment_detalle_lugar\" >\r\n        <action\r\n            android:id=\"@+id/action_detallePersonaFragment_to_personasFragment\"\r\n            app:destination=\"@id/lugaresFragment\" />\r\n    </fragment>\r\n\r\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/res/navigation/mobile_navigation.xml	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/res/navigation/mobile_navigation.xml	(date 1606159300329)
+@@ -2,47 +2,4 @@
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+-    android:id="@+id/mobile_navigation"
+-    app:startDestination="@id/loginFragment">
+-
+-    <fragment
+-        android:id="@+id/loginFragment"
+-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LoginFragment"
+-        android:label="LoginFragment"
+-        tools:layout="@layout/fragment_login">
+-        <action
+-            android:id="@+id/action_loginFragment_to_registryFragment2"
+-            app:destination="@id/registryFragment" />
+-        <action
+-            android:id="@+id/action_loginFragment_to_personasFragment"
+-            app:destination="@id/lugaresFragment" />
+-    </fragment>
+-    <fragment
+-        android:id="@+id/registryFragment"
+-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.RegistryFragment"
+-        android:label="fragment_registry"
+-        tools:layout="@layout/fragment_registry" >
+-        <action
+-            android:id="@+id/action_registryFragment_to_loginFragment2"
+-            app:destination="@id/loginFragment" />
+-    </fragment>
+-    <fragment
+-        android:id="@+id/lugaresFragment"
+-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LugaresFragment"
+-        android:label="PersonasFragment"
+-        tools:layout="@layout/fragment_lugares">
+-        <action
+-            android:id="@+id/action_lugaresFragment_to_detalleLugarFragment"
+-            app:destination="@id/detalleLugarFragment" />
+-    </fragment>
+-    <fragment
+-        android:id="@+id/detalleLugarFragment"
+-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetalleLugarFragment"
+-        android:label="fragment_detalle_lugar"
+-        tools:layout="@layout/fragment_detalle_lugar" >
+-        <action
+-            android:id="@+id/action_detallePersonaFragment_to_personasFragment"
+-            app:destination="@id/lugaresFragment" />
+-    </fragment>
+-
+-</navigation>
+\ No newline at end of file
++    android:id="@+id/mobile_navigation"/>
+\ No newline at end of file
+Index: lab3architecture/src/main/res/layout/fragment_lugares.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:orientation=\"vertical\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_marginTop=\"55dp\">\r\n    <EditText\r\n        android:id=\"@+id/txtlugar\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"Valor\">\r\n    </EditText>\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recyclerView\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\" />\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/res/layout/fragment_lugares.xml	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/res/layout/fragment_lugares.xml	(date 1606177475726)
+@@ -1,19 +1,42 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
+     android:orientation="vertical"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:layout_marginTop="55dp">
++    android:layout_marginTop="55dp"
++    tools:context=".LoginActivity">
++
+     <EditText
+         android:id="@+id/txtlugar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:hint="Valor">
+-    </EditText>
++        android:hint="Valor"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
+ 
+     <androidx.recyclerview.widget.RecyclerView
+-        android:id="@+id/recyclerView"
++        android:id="@+id/placesListRecyclerView"
+         android:layout_width="match_parent"
+-        android:layout_height="wrap_content" />
++        android:layout_height="0dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/txtlugar" />
++
++    <com.google.android.material.floatingactionbutton.FloatingActionButton
++        android:id="@+id/floating_action_button"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_gravity="bottom|right"
++        android:layout_margin="16dp"
++        android:contentDescription="@string/fab_content_desc"
++        app:srcCompat="@android:drawable/ic_input_add"
++        android:tint="@android:color/white"
++        android:visibility="visible"
++        app:backgroundTint="@color/colorAccent"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent" />
+ 
+-</LinearLayout>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Fragments/LoginFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.udea.compumovil.gr02_20201.lab3.Fragments\r\n\r\nimport android.app.Activity\r\nimport android.content.Context\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.view.inputmethod.InputMethodManager\r\nimport android.widget.Button\r\nimport android.widget.EditText\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.databinding.DataBindingUtil\r\nimport androidx.lifecycle.Observer\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport androidx.room.Room\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Descriptions\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.LongDescriptions\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.R\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModel\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModelFactory\r\nimport kotlinx.android.synthetic.main.fragment_login.*\r\n\r\nclass LoginFragment : Fragment() {\r\n    private lateinit var viewModel: UserViewModel\r\n    private lateinit var textEmail: EditText\r\n    private lateinit var textPass: EditText\r\n    private lateinit var buttonLogin: Button\r\n    private lateinit var registerLink: TextView\r\n    private lateinit var dataBase: LabTresDB\r\n    private lateinit var userDao: UserDao\r\n    private lateinit var placeDao: PlaceDao\r\n\r\n\r\n    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {\r\n\r\n        dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, \"mi_db\").allowMainThreadQueries().build()\r\n        val userDao: UserDao= LabTresDB.getDatabaseInstance(requireContext()).usuarioDao()\r\n        val repository= UserRepository(dataBase,userDao)\r\n        val factory= UserViewModelFactory(repository)\r\n        viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)\r\n        return inflater.inflate(R.layout.fragment_login, container, false)\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        textEmail= view.findViewById(R.id.editTextCorreo)\r\n        textPass= view.findViewById(R.id.editTextPassword)\r\n        buttonLogin= view.findViewById(R.id.buttonStart)\r\n        registerLink= view.findViewById<TextView>(R.id.textViewRegister)\r\n\r\n        //dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, \"mi_db\").allowMainThreadQueries().build()\r\n        userDao= dataBase.usuarioDao()\r\n        placeDao= dataBase.lugarDao()\r\n        createViewModel()\r\n        buttonLogin.setOnClickListener { controlBotonStart(it) }\r\n        registerLink.setOnClickListener { lanzaFragmentRegistro() }\r\n    }\r\n\r\n    private fun createViewModel(){\r\n        val userDao: UserDao= LabTresDB.getDatabaseInstance(requireContext()).usuarioDao()\r\n        val repository= UserRepository(dataBase,userDao)\r\n        val factory= UserViewModelFactory(repository)\r\n        viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)\r\n    }\r\n\r\n    /**\r\n     * Acciones que se realizan al presionar el botón de iniciar sesión\r\n     */\r\n    private fun controlBotonStart(view: View){\r\n        if (validaDatos()){\r\n            actividadInicio()\r\n            hideKeyboard()\r\n        }\r\n    }\r\n\r\n    private fun lanzaFragmentRegistro(){\r\n        val fragmentRegistro= RegistryFragment()\r\n        val fragmentManager= requireActivity().supportFragmentManager\r\n        val fragmentTransaction= fragmentManager.beginTransaction()\r\n        fragmentTransaction.replace(R.id.container_fragment, fragmentRegistro)\r\n        fragmentTransaction.addToBackStack(null)\r\n        fragmentTransaction.commit()\r\n        hideKeyboard()\r\n    }\r\n\r\n    private fun lanzaFragmentLugares(){\r\n        val fragmentLugares= LugaresFragment()\r\n        val fragmentManager= requireActivity().supportFragmentManager\r\n        val fragmentTransaction= fragmentManager.beginTransaction()\r\n        fragmentTransaction.replace(R.id.container_fragment, fragmentLugares)\r\n        fragmentTransaction.addToBackStack(null)\r\n        fragmentTransaction.commit()\r\n    }\r\n\r\n    /**\r\n     * Función para obtener los datos de la BD y validar el inicio de sesión\r\n     */\r\n    private fun actividadInicio(){\r\n        val email = editTextCorreo.text.toString().trim { it <= ' ' }\r\n        val password = editTextPassword.text.toString().trim { it <= ' ' }\r\n        val user= viewModel.userLogin(email,password)\r\n        if (user != null) {\r\n            guardarListaLugares()\r\n            lanzaFragmentLugares()\r\n            Toast.makeText(requireActivity(),\"Exito!\", Toast.LENGTH_SHORT).show()\r\n        } else {\r\n            Toast.makeText(requireActivity(), \"Sus datos son incorrectos\", Toast.LENGTH_LONG).show()\r\n            textEmail.error=\"No existe o error al escribir datos\"\r\n            textPass.error=\"No existe o error al escribir datos\"\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Valida que los campos de inicio de sesión no estén vacíos\r\n     */\r\n    private fun validaDatos():Boolean{\r\n        var retorno=true\r\n        val c1=textEmail.text.toString()\r\n        val c2=textPass.text.toString()\r\n        if(c1.isNullOrEmpty()){\r\n            retorno=false\r\n            textEmail.error=\"Ingrese un correo\"\r\n            Toast.makeText(requireActivity(), \"Faltan datos\", Toast.LENGTH_SHORT)\r\n        }\r\n        if(c2.isNullOrEmpty()){\r\n            retorno=false\r\n            textPass.error=\"Ingrese una contraseña\"\r\n            Toast.makeText(requireContext(), \"Faltan datos\", Toast.LENGTH_SHORT).show()\r\n        }\r\n        return retorno\r\n    }\r\n\r\n    fun Fragment.hideKeyboard(){\r\n        view?.let { activity?.hideKeyBoard(it) }\r\n    }\r\n    fun Context.hideKeyBoard(view: View){\r\n        val imm= getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager\r\n        imm.hideSoftInputFromWindow(view.windowToken, 0)\r\n    }\r\n\r\n    fun guardarListaLugares(){\r\n        placeDao= dataBase.lugarDao()\r\n        val lugar = listOf<Place>(\r\n            Place(1,\"Santorini\", Descriptions().santorini, LongDescriptions().santorini, R.drawable.santorini1),\r\n            Place(2,\"Naxos\", Descriptions().naxos, LongDescriptions().naxos, R.drawable.naxos1),\r\n            Place(3,\"Rodas\", Descriptions().rodas, LongDescriptions().rodas, R.drawable.rodas1),\r\n            Place(4,\"Mykonos\", Descriptions().miconos, LongDescriptions().miconos, R.drawable.mykonos1),\r\n            Place(5,\"Olimpia\", Descriptions().olimpia, LongDescriptions().olimpia, R.drawable.olimpia1)\r\n        )\r\n        if (esTablaLugaresVacia()){ placeDao.insertAll(lugar)}\r\n    }\r\n\r\n    fun esTablaLugaresVacia():Boolean{\r\n        var retorno=false\r\n        val lugar= placeDao.getPlaces()\r\n        if (lugar.isEmpty()){retorno=true}\r\n        return retorno\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Fragments/LoginFragment.kt	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Fragments/LoginFragment.kt	(date 1606168361357)
+@@ -3,7 +3,6 @@
+ import android.app.Activity
+ import android.content.Context
+ import android.os.Bundle
+-import android.util.Log
+ import androidx.fragment.app.Fragment
+ import android.view.LayoutInflater
+ import android.view.View
+@@ -13,16 +12,11 @@
+ import android.widget.EditText
+ import android.widget.TextView
+ import android.widget.Toast
+-import androidx.databinding.DataBindingUtil
+-import androidx.lifecycle.Observer
+ import androidx.lifecycle.ViewModelProvider
+ import androidx.room.Room
+-import co.edu.udea.compumovil.gr02_20201.lab3.Descriptions
+-import co.edu.udea.compumovil.gr02_20201.lab3.LongDescriptions
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
+-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+ import co.edu.udea.compumovil.gr02_20201.lab3.R
+ import co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository
+ import co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModel
+@@ -41,12 +35,12 @@
+ 
+ 
+     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+-
+         dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
+-        val userDao: UserDao= LabTresDB.getDatabaseInstance(requireContext()).usuarioDao()
+-        val repository= UserRepository(dataBase,userDao)
+-        val factory= UserViewModelFactory(repository)
+-        viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)
++        //binding= DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
++//        binding.buttonStart.setOnClickListener {
++//            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_lugaresFragment)
++//        }
++        //return binding.root
+         return inflater.inflate(R.layout.fragment_login, container, false)
+     }
+ 
+@@ -56,10 +50,6 @@
+         textPass= view.findViewById(R.id.editTextPassword)
+         buttonLogin= view.findViewById(R.id.buttonStart)
+         registerLink= view.findViewById<TextView>(R.id.textViewRegister)
+-
+-        //dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
+-        userDao= dataBase.usuarioDao()
+-        placeDao= dataBase.lugarDao()
+         createViewModel()
+         buttonLogin.setOnClickListener { controlBotonStart(it) }
+         registerLink.setOnClickListener { lanzaFragmentRegistro() }
+@@ -69,7 +59,7 @@
+         val userDao: UserDao= LabTresDB.getDatabaseInstance(requireContext()).usuarioDao()
+         val repository= UserRepository(dataBase,userDao)
+         val factory= UserViewModelFactory(repository)
+-        viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)
++        viewModel= ViewModelProvider(this,factory).get(UserViewModel::class.java)
+     }
+ 
+     /**
+@@ -82,6 +72,9 @@
+         }
+     }
+ 
++    /**
++     * Prepara el fragment con el formulario de registro
++     */
+     private fun lanzaFragmentRegistro(){
+         val fragmentRegistro= RegistryFragment()
+         val fragmentManager= requireActivity().supportFragmentManager
+@@ -92,6 +85,9 @@
+         hideKeyboard()
+     }
+ 
++    /**
++     * Prepara el fragment con la lista de lugares
++     */
+     private fun lanzaFragmentLugares(){
+         val fragmentLugares= LugaresFragment()
+         val fragmentManager= requireActivity().supportFragmentManager
+@@ -102,14 +98,15 @@
+     }
+ 
+     /**
+-     * Función para obtener los datos de la BD y validar el inicio de sesión
++     * Función para obtener los datos a través del viewModel y validar el inicio de sesión
++     * También guarda la lista de lugares por defecto por primera vez
+      */
+     private fun actividadInicio(){
+         val email = editTextCorreo.text.toString().trim { it <= ' ' }
+         val password = editTextPassword.text.toString().trim { it <= ' ' }
+         val user= viewModel.userLogin(email,password)
+         if (user != null) {
+-            guardarListaLugares()
++            viewModel.guardarListaLugares(requireContext())
+             lanzaFragmentLugares()
+             Toast.makeText(requireActivity(),"Exito!", Toast.LENGTH_SHORT).show()
+         } else {
+@@ -146,23 +143,4 @@
+         val imm= getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+         imm.hideSoftInputFromWindow(view.windowToken, 0)
+     }
+-
+-    fun guardarListaLugares(){
+-        placeDao= dataBase.lugarDao()
+-        val lugar = listOf<Place>(
+-            Place(1,"Santorini", Descriptions().santorini, LongDescriptions().santorini, R.drawable.santorini1),
+-            Place(2,"Naxos", Descriptions().naxos, LongDescriptions().naxos, R.drawable.naxos1),
+-            Place(3,"Rodas", Descriptions().rodas, LongDescriptions().rodas, R.drawable.rodas1),
+-            Place(4,"Mykonos", Descriptions().miconos, LongDescriptions().miconos, R.drawable.mykonos1),
+-            Place(5,"Olimpia", Descriptions().olimpia, LongDescriptions().olimpia, R.drawable.olimpia1)
+-        )
+-        if (esTablaLugaresVacia()){ placeDao.insertAll(lugar)}
+-    }
+-
+-    fun esTablaLugaresVacia():Boolean{
+-        var retorno=false
+-        val lugar= placeDao.getPlaces()
+-        if (lugar.isEmpty()){retorno=true}
+-        return retorno
+-    }
+ }
+\ No newline at end of file
+Index: lab3architecture/src/main/res/values-night/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <string name=\"registro\">¡Regístrate!</string>\r\n    <string name=\"contrasena\">Contraseña</string>\r\n    <string name=\"correoElectronico\">Correo Electrónico</string>\r\n    <string name=\"iniciar\">Iniciar</string>\r\n    <string name=\"iniciar_sesion\">Iniciar sesión</string>\r\n    <string name=\"cerrar_sesion\">Cerrar sesión</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/res/values-night/strings.xml	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/res/values-night/strings.xml	(date 1606175548131)
+@@ -6,4 +6,5 @@
+     <string name="iniciar">Iniciar</string>
+     <string name="iniciar_sesion">Iniciar sesión</string>
+     <string name="cerrar_sesion">Cerrar sesión</string>
++    <string name="fab_content_desc">content_desc</string>
+ </resources>
+\ No newline at end of file
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Adaptadores/PlaceAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Adaptadores/PlaceAdapter.kt	(date 1606150446885)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Adaptadores/PlaceAdapter.kt	(date 1606150446885)
+@@ -0,0 +1,53 @@
++package co.edu.udea.compumovil.gr02_20201.lab3.Adaptadores
++
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.ImageView
++import android.widget.TextView
++import androidx.recyclerview.widget.RecyclerView
++import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
++import co.edu.udea.compumovil.gr02_20201.lab3.R
++import kotlinx.android.synthetic.main.lista_lugares.*
++import kotlinx.android.synthetic.main.lista_lugares.view.*
++
++class PlaceAdapter(var items: ArrayList<Place>, var clickListener: OnPlaceItemClickListener): RecyclerView.Adapter<PlaceViewHolder>() {
++    //private var placeList= mutableListOf<Place>()
++
++    override fun getItemCount()= items.size
++
++    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
++        lateinit var placeViewHolder: PlaceViewHolder
++        placeViewHolder = PlaceViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.lista_lugares, parent, false))
++        return placeViewHolder
++    }
++
++    override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
++        //val place= placeList[position]
++        //holder.placename.text= place.name
++        //holder.description.text= place.short_des
++        //holder.image.setImageResource(place.img)
++        holder.initialize(items.get(position), clickListener)
++    }
++
++}
++
++class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
++    var image= itemView.imagen_lugar
++    var placename=itemView.lugares
++    var description= itemView.descrip_corta
++
++    fun initialize(item:Place, action:OnPlaceItemClickListener){
++        image.setImageResource(item.img)
++        placename.text= item.name
++        description.text= item.short_des
++
++        itemView.setOnClickListener {
++            action.onItemClick(item, adapterPosition)
++        }
++    }
++}
++
++interface OnPlaceItemClickListener{
++    fun onItemClick(item: Place, position: Int)
++}
+\ No newline at end of file
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Repositorio/UserRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.udea.compumovil.gr02_20201.lab3.Repositorio\r\n\r\nimport android.app.Application\r\nimport androidx.lifecycle.LiveData\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Fragments.RegistryFragment\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.User\r\n\r\n//class UserRepository (private val daoUser: UserDao, private val daoPlace: PlaceDao){\r\n//class UserRepository (private val daoUser: UserDao){\r\nclass UserRepository (private val db:LabTresDB, private val daoUser:UserDao){\r\n\r\n    suspend fun insertaUsuario(user: User) {//=db.usuarioDao().getUser(mail,pwd)\r\n        daoUser.insertUser(user)\r\n    }\r\n\r\n    fun getUser(mail:String,pwd:String)= db.usuarioDao().getUser(mail,pwd)\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Repositorio/UserRepository.kt	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Repositorio/UserRepository.kt	(date 1606163867286)
+@@ -9,7 +9,6 @@
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.User
+ 
+-//class UserRepository (private val daoUser: UserDao, private val daoPlace: PlaceDao){
+ //class UserRepository (private val daoUser: UserDao){
+ class UserRepository (private val db:LabTresDB, private val daoUser:UserDao){
+ 
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Repositorio/PlaceRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.udea.compumovil.gr02_20201.lab3.Repositorio\r\n\r\nimport androidx.lifecycle.LiveData\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place\r\n\r\nclass PlaceRepository(private val placeDao: PlaceDao) {\r\n    val places: LiveData<List<Place>> = placeDao.getAllPlaces()\r\n\r\n    suspend fun insert(place: Place){\r\n        placeDao.insert(place)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Repositorio/PlaceRepository.kt	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Repositorio/PlaceRepository.kt	(date 1606172964067)
+@@ -2,11 +2,18 @@
+ 
+ import androidx.lifecycle.LiveData
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao
++import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+ 
+-class PlaceRepository(private val placeDao: PlaceDao) {
++class PlaceRepository(private val db:LabTresDB,private val placeDao: PlaceDao) {
+     val places: LiveData<List<Place>> = placeDao.getAllPlaces()
+ 
++    fun getAllPlaces(){
++        placeDao.getPlaces()
++    }
++
++    fun getPL()= db.lugarDao().getPlaces()
++
+     suspend fun insert(place: Place){
+         placeDao.insert(place)
+     }
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/PlaceViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.udea.compumovil.gr02_20201.lab3.ViewModel\r\n\r\nimport android.app.Application\r\nimport androidx.core.content.ContentProviderCompat.requireContext\r\nimport androidx.lifecycle.*\r\nimport androidx.room.Room\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.PlaceRepository\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.launch\r\nimport java.util.ArrayList\r\n\r\n//class PlaceViewModel(private val repository: UserRepository): ViewModel() {\r\nclass PlaceViewModel(application: Application): AndroidViewModel(application) {\r\n    private val repository: PlaceRepository\r\n    val places: LiveData<List<Place>>\r\n    val placeDao:PlaceDao\r\n    private lateinit var listaLugares: ArrayList<Place>\r\n    val inputNombreLugar= MutableLiveData<String>()\r\n    val inputDescrCorta= MutableLiveData<String>()\r\n    val inputDescrLarga= MutableLiveData<String>()\r\n    val inputImg= MutableLiveData<Int>()\r\n\r\n    init {\r\n        placeDao= LabTresDB.getDatabaseInstance(application).lugarDao()\r\n        repository= PlaceRepository(placeDao)\r\n        places= repository.places\r\n    }\r\n\r\n    fun insert(place: Place)= viewModelScope.launch(Dispatchers.IO){\r\n        repository.insert(place)\r\n    }\r\n\r\n    fun cargarLista(){\r\n        var nombre: String?\r\n        var desC: String?\r\n        var desL: String?\r\n        var img: Int\r\n        //dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, \"mi_db\").allowMainThreadQueries().build()\r\n        //placeDao= dataBase.lugarDao()\r\n        val lugares= placeDao.getPlaces()\r\n        val tama= placeDao.getPlaces().size\r\n        //Toast.makeText(context, \"el tamaño es \" + tama, Toast.LENGTH_SHORT).show()\r\n        for (i in 0 until tama){\r\n            nombre= lugares[i].name\r\n            desC= lugares[i].short_des\r\n            desL= lugares[i].long_desc\r\n            img= lugares[i].img\r\n            listaLugares.add(Place(0,nombre, desC, desL, img))\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/PlaceViewModel.kt	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/PlaceViewModel.kt	(date 1606173579038)
+@@ -1,6 +1,7 @@
+ package co.edu.udea.compumovil.gr02_20201.lab3.ViewModel
+ 
+ import android.app.Application
++import android.content.Context
+ import androidx.core.content.ContentProviderCompat.requireContext
+ import androidx.lifecycle.*
+ import androidx.room.Room
+@@ -13,34 +14,43 @@
+ import kotlinx.coroutines.launch
+ import java.util.ArrayList
+ 
+-//class PlaceViewModel(private val repository: UserRepository): ViewModel() {
+-class PlaceViewModel(application: Application): AndroidViewModel(application) {
+-    private val repository: PlaceRepository
+-    val places: LiveData<List<Place>>
+-    val placeDao:PlaceDao
++class PlaceViewModel(private var repository: PlaceRepository): ViewModel() {
++//class PlaceViewModel(application: Application): AndroidViewModel(application) {
++    //private val repository: PlaceRepository
++    private lateinit var dataBase: LabTresDB
++    private lateinit var placeDao:PlaceDao
+     private lateinit var listaLugares: ArrayList<Place>
+-    val inputNombreLugar= MutableLiveData<String>()
+-    val inputDescrCorta= MutableLiveData<String>()
+-    val inputDescrLarga= MutableLiveData<String>()
+-    val inputImg= MutableLiveData<Int>()
++    //private val placesP= MutableLiveData<List<Place>>()
++    //var places: LiveData<List<Place>>
++    //get() = placesP
++
++    /*suspend fun getPlaces(){
++        val places= repository.places
++        placesP.value=places
++    }*/
++
++
++
+ 
+     init {
+-        placeDao= LabTresDB.getDatabaseInstance(application).lugarDao()
+-        repository= PlaceRepository(placeDao)
+-        places= repository.places
++        //placeDao= LabTresDB.getDatabaseInstance(application).lugarDao()
++        //repository= PlaceRepository(dataBase,placeDao)
++        //places= repository.places
++        listaLugares= ArrayList()
+     }
+ 
+     fun insert(place: Place)= viewModelScope.launch(Dispatchers.IO){
+         repository.insert(place)
+     }
+ 
+-    fun cargarLista(){
++    fun cargarLista(context: Context):ArrayList<Place>{
+         var nombre: String?
+         var desC: String?
+         var desL: String?
+         var img: Int
+-        //dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
+-        //placeDao= dataBase.lugarDao()
++        listaLugares=ArrayList()
++        dataBase= Room.databaseBuilder(context.applicationContext, LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
++        placeDao= dataBase.lugarDao()
+         val lugares= placeDao.getPlaces()
+         val tama= placeDao.getPlaces().size
+         //Toast.makeText(context, "el tamaño es " + tama, Toast.LENGTH_SHORT).show()
+@@ -51,6 +61,7 @@
+             img= lugares[i].img
+             listaLugares.add(Place(0,nombre, desC, desL, img))
+         }
++        return listaLugares
+     }
+ 
+ }
+\ No newline at end of file
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Fragments/RegistryFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.udea.compumovil.gr02_20201.lab3.Fragments\r\n\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Button\r\nimport android.widget.EditText\r\nimport android.widget.Toast\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport androidx.room.Room\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.User\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.R\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModel\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModelFactory\r\n\r\nclass RegistryFragment : Fragment() {\r\n    private lateinit var viewModel: UserViewModel\r\n    private lateinit var editTextUsuario: EditText\r\n    private lateinit var editTextCorreo: EditText\r\n    private lateinit var editTextPass: EditText\r\n    private lateinit var buttonRegistro: Button\r\n\r\n    private lateinit var dataBase: LabTresDB\r\n\r\n    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_registry, container, false)\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n        editTextUsuario= view.findViewById(R.id.editTextRegUser)\r\n        editTextCorreo= view.findViewById(R.id.editTextRegEmail)\r\n        editTextPass= view.findViewById(R.id.editTextRegPassword)\r\n        buttonRegistro= view.findViewById(R.id.buttonRegGuardar)\r\n\r\n        dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, \"mi_db\").allowMainThreadQueries().build()\r\n\r\n        createViewModel()\r\n        buttonRegistro.setOnClickListener { registraUsuario()}\r\n    }\r\n\r\n    private fun createViewModel(){\r\n        val userDao: UserDao= LabTresDB.getDatabaseInstance(requireContext()).usuarioDao()\r\n        val repository= UserRepository(dataBase, userDao)\r\n        val factory= UserViewModelFactory(repository)\r\n        viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)\r\n    }\r\n\r\n    private fun registraUsuario(){\r\n        val userName = editTextUsuario.text.toString().trim { it <= ' ' }\r\n        val email = editTextCorreo.text.toString().trim { it <= ' ' }\r\n        val password = editTextPass.text.toString().trim { it <= ' ' }\r\n        val usuario = User(email, password,userName)\r\n        viewModel.insert(usuario)\r\n        Toast.makeText(requireActivity(), \"¡Registro Exitoso!\", Toast.LENGTH_LONG).show()\r\n        createFragment()\r\n    }\r\n\r\n    private fun createFragment(){\r\n        val fragmentLogin= LoginFragment()\r\n        val fragmentManager= requireActivity().supportFragmentManager\r\n        val fragmentTransaction= fragmentManager.beginTransaction()\r\n        fragmentTransaction.replace(R.id.container_fragment, fragmentLogin)\r\n        fragmentTransaction.addToBackStack(null)\r\n        fragmentTransaction.commit()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Fragments/RegistryFragment.kt	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/Fragments/RegistryFragment.kt	(date 1606161030286)
+@@ -52,6 +52,8 @@
+         viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)
+     }
+ 
++
++
+     private fun registraUsuario(){
+         val userName = editTextUsuario.text.toString().trim { it <= ' ' }
+         val email = editTextCorreo.text.toString().trim { it <= ' ' }
+Index: lab3architecture/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Lab3Architecture</string>\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"open\">open</string>\r\n    <string name=\"close\">close</string>\r\n    <string name=\"registro\">¡Regístrate!</string>\r\n    <string name=\"sitios\">Sitios Turísticos</string>\r\n    <string name=\"contrasena\">Contraseña</string>\r\n    <string name=\"correoElectronico\">Correo Electrónico</string>\r\n    <string name=\"iniciar\">Iniciar</string>\r\n    <string name=\"iniciar_sesion\">Iniciar sesión</string>\r\n    <string name=\"usuario\">Usuario</string>\r\n    <string name=\"cerrar_sesion\">Cerrar sesión</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/res/values/strings.xml	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/res/values/strings.xml	(date 1606175548126)
+@@ -11,4 +11,5 @@
+     <string name="iniciar_sesion">Iniciar sesión</string>
+     <string name="usuario">Usuario</string>
+     <string name="cerrar_sesion">Cerrar sesión</string>
++    <string name="fab_content_desc">content_desc</string>
+ </resources>
+\ No newline at end of file
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/UserViewModelFactory.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.udea.compumovil.gr02_20201.lab3.ViewModel\r\n\r\nimport androidx.lifecycle.ViewModel\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository\r\n\r\nclass UserViewModelFactory(private val repository: UserRepository): ViewModelProvider.NewInstanceFactory(){//ViewModelProvider.Factory {\r\n\r\n    override fun <T : ViewModel?> create(modelClass: Class<T>): T {\r\n        if (modelClass.isAssignableFrom(UserViewModel::class.java)){\r\n            return UserViewModel(repository) as T\r\n        }\r\n        throw IllegalArgumentException(\"Unknown View Model class\")\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/UserViewModelFactory.kt	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/UserViewModelFactory.kt	(date 1606172964077)
+@@ -4,6 +4,7 @@
+ import androidx.lifecycle.ViewModelProvider
+ import co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository
+ 
++@Suppress("UNCHECKED CAST")
+ class UserViewModelFactory(private val repository: UserRepository): ViewModelProvider.NewInstanceFactory(){//ViewModelProvider.Factory {
+ 
+     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+Index: lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/UserViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package co.edu.udea.compumovil.gr02_20201.lab3.ViewModel\r\n\r\nimport android.app.Application\r\nimport android.content.Context\r\nimport android.database.Observable\r\nimport android.util.Log\r\nimport androidx.databinding.ObservableField\r\nimport androidx.lifecycle.*\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.User\r\nimport co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository\r\nimport kotlinx.coroutines.Dispatchers\r\nimport kotlinx.coroutines.launch\r\nimport kotlinx.coroutines.withContext\r\nimport java.util.*\r\n\r\nclass UserViewModel(private val repository: UserRepository): ViewModel() {\r\n//class UserViewModel(application: Application): AndroidViewModel(application) {\r\n    var username= ObservableField(\"\")\r\n    var userpwd= ObservableField(\"\")\r\n    var resultData= MutableLiveData<String>()\r\n\r\n    fun insertaDesdeVM(){\r\n        //repository.insertar(user)\r\n        Log.d(\"Mensaje\",\"entró a la función del view model\")\r\n    }\r\n    fun insert(user: User) = viewModelScope.launch(Dispatchers.IO) {\r\n            repository.insertaUsuario(user)\r\n        }\r\n\r\n    //fun userLogin(usernameP:String,userpwdP:String)= viewModelScope.launch(Dispatchers.IO){\r\n    //    repository.getUser(usernameP,userpwdP)\r\n    //}\r\n\r\n    fun userLogin(usernameP:String,userpwdP:String)= repository.getUser(usernameP,userpwdP)\r\n\r\n    fun loginCall(usernameP:String,userpwdP:String)\r\n    {\r\n        username.set(usernameP)\r\n        userpwd.set(userpwdP)\r\n    }\r\n\r\n    fun getResultLogin(): MutableLiveData<String>{\r\n        return resultData\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/UserViewModel.kt	(revision 41c0e1fb8d916f1517fd3540409fcf3049a17061)
++++ lab3architecture/src/main/java/co/edu/udea/compumovil/gr02_20201/lab3/ViewModel/UserViewModel.kt	(date 1606166326137)
+@@ -1,18 +1,21 @@
+ package co.edu.udea.compumovil.gr02_20201.lab3.ViewModel
+ 
+-import android.app.Application
+ import android.content.Context
+-import android.database.Observable
+ import android.util.Log
+ import androidx.databinding.ObservableField
+ import androidx.lifecycle.*
++import androidx.room.Room
++import co.edu.udea.compumovil.gr02_20201.lab3.Descriptions
++import co.edu.udea.compumovil.gr02_20201.lab3.LongDescriptions
++import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
++import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+ import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.User
++import co.edu.udea.compumovil.gr02_20201.lab3.R
+ import co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository
+ import kotlinx.coroutines.Dispatchers
+ import kotlinx.coroutines.launch
+-import kotlinx.coroutines.withContext
+ import java.util.*
+ 
+ class UserViewModel(private val repository: UserRepository): ViewModel() {
+@@ -20,30 +23,46 @@
+     var username= ObservableField("")
+     var userpwd= ObservableField("")
+     var resultData= MutableLiveData<String>()
++    private lateinit var placeDao: PlaceDao
++    private lateinit var userDao: UserDao
++    private lateinit var dataBase: LabTresDB
+ 
+     fun insertaDesdeVM(){
+         //repository.insertar(user)
+         Log.d("Mensaje","entró a la función del view model")
+     }
++
+     fun insert(user: User) = viewModelScope.launch(Dispatchers.IO) {
+             repository.insertaUsuario(user)
+         }
+ 
+-    //fun userLogin(usernameP:String,userpwdP:String)= viewModelScope.launch(Dispatchers.IO){
+-    //    repository.getUser(usernameP,userpwdP)
+-    //}
+-
+     fun userLogin(usernameP:String,userpwdP:String)= repository.getUser(usernameP,userpwdP)
+ 
+-    fun loginCall(usernameP:String,userpwdP:String)
+-    {
+-        username.set(usernameP)
+-        userpwd.set(userpwdP)
++    fun setViewModelParam(context: Context):UserViewModelFactory{
++        dataBase= Room.databaseBuilder(context.applicationContext, LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
++        userDao= dataBase.usuarioDao()
++        val repository= UserRepository(dataBase,userDao)
++        val factory= UserViewModelFactory(repository)
++        return factory
+     }
+ 
+-    fun getResultLogin(): MutableLiveData<String>{
+-        return resultData
++    fun guardarListaLugares(context: Context){
++        dataBase= Room.databaseBuilder(context.applicationContext, LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
++        placeDao= dataBase.lugarDao()
++        val lugar = listOf<Place>(
++            Place(1,"Santorini", Descriptions().santorini, LongDescriptions().santorini, R.drawable.santorini1),
++            Place(2,"Naxos", Descriptions().naxos, LongDescriptions().naxos, R.drawable.naxos1),
++            Place(3,"Rodas", Descriptions().rodas, LongDescriptions().rodas, R.drawable.rodas1),
++            Place(4,"Mykonos", Descriptions().miconos, LongDescriptions().miconos, R.drawable.mykonos1),
++            Place(5,"Olimpia", Descriptions().olimpia, LongDescriptions().olimpia, R.drawable.olimpia1)
++        )
++        if (esTablaLugaresVacia()){ placeDao.insertAll(lugar)}
+     }
+ 
+-
++    fun esTablaLugaresVacia():Boolean{
++        var retorno=false
++        val lugar= placeDao.getPlaces()
++        if (lugar.isEmpty()){retorno=true}
++        return retorno
++    }
+ }

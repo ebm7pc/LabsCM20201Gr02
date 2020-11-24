@@ -15,8 +15,7 @@
         <ImageView
             android:id="@+id/imagen_lugar"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/gohan_cara1">
+            android:layout_height="100dp">
 
         </ImageView>
 
