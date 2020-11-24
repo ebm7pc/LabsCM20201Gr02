@@ -1,19 +1,13 @@
-package co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase
+package co.edu.udea.compumovil.gr02_20201.lab3.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import co.edu.udea.compumovil.gr02_20201.lab3.Descriptions
-import co.edu.udea.compumovil.gr02_20201.lab3.LongDescriptions
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.User
-import co.edu.udea.compumovil.gr02_20201.lab3.R
-import co.edu.udea.compumovil.gr02_20201.lab3.ioThread
-import kotlinx.coroutines.CoroutineScope
+import co.edu.udea.compumovil.gr02_20201.lab3.data.dao.PlaceDao
+import co.edu.udea.compumovil.gr02_20201.lab3.data.dao.UserDao
+import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
+import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.User
 
 @Database(entities = [User::class, Place::class], version = 1)
 abstract class LabTresDB : RoomDatabase(){

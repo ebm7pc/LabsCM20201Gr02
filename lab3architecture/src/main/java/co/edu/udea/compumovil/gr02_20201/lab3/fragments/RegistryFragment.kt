@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr02_20201.lab3.Fragments
+package co.edu.udea.compumovil.gr02_20201.lab3.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,13 +10,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.UserDao
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.User
+import co.edu.udea.compumovil.gr02_20201.lab3.data.dao.UserDao
+import co.edu.udea.compumovil.gr02_20201.lab3.data.database.LabTresDB
+import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.User
 import co.edu.udea.compumovil.gr02_20201.lab3.R
-import co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.UserRepository
-import co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModel
-import co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.UserViewModelFactory
+import co.edu.udea.compumovil.gr02_20201.lab3.repo.UserRepository
+import co.edu.udea.compumovil.gr02_20201.lab3.viewmodel.UserViewModel
+import co.edu.udea.compumovil.gr02_20201.lab3.viewmodel.UserViewModelFactory
 
 class RegistryFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
@@ -51,6 +51,8 @@ class RegistryFragment : Fragment() {
         val factory= UserViewModelFactory(repository)
         viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)
     }
+
+
 
     private fun registraUsuario(){
         val userName = editTextUsuario.text.toString().trim { it <= ' ' }

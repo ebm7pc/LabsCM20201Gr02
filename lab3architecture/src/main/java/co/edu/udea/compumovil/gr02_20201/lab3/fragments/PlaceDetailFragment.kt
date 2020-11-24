@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr02_20201.lab3.Fragments
+package co.edu.udea.compumovil.gr02_20201.lab3.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
 import co.edu.udea.compumovil.gr02_20201.lab3.R
 
-class DetalleLugarFragment : Fragment() {
-    var nombre: TextView? = null
-    var descripcion: TextView? = null
-    var imagen: ImageView? = null
+class PlaceDetailFragment : Fragment() {
+    lateinit var nombre: TextView
+    lateinit var descripcion: TextView
+    lateinit var imagen: ImageView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.detalle_lugar_fragment, container, false)
         nombre = view.findViewById(R.id.nombre_lugar)
@@ -25,9 +25,9 @@ class DetalleLugarFragment : Fragment() {
         //validacion para verificar si existen argumentos para mostrar
         if (objetoLugar != null) {
             lugar = objetoLugar.getSerializable("objeto") as Place
-            imagen!!.setImageResource(lugar.img)
-            nombre!!.text = lugar.name
-            descripcion!!.text = lugar.long_desc
+            imagen.setImageResource(lugar.img)
+            nombre.text = lugar.name
+            descripcion.text = lugar.long_desc
         }
         return view
     }

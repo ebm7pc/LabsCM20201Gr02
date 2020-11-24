@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr02_20201.lab3.Fragments
+package co.edu.udea.compumovil.gr02_20201.lab3.fragments
 
 import android.app.Activity
 import android.content.Context
@@ -12,20 +12,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import co.edu.udea.compumovil.gr02_20201.lab3.Adaptadores.OnPlaceItemClickListener
-import co.edu.udea.compumovil.gr02_20201.lab3.Adaptadores.PlaceAdapter
-import co.edu.udea.compumovil.gr02_20201.lab3.Interfaces.iComunicaFragments
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao.PlaceDao
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.DataBase.LabTresDB
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+import co.edu.udea.compumovil.gr02_20201.lab3.adapters.OnPlaceItemClickListener
+import co.edu.udea.compumovil.gr02_20201.lab3.adapters.PlaceAdapter
+import co.edu.udea.compumovil.gr02_20201.lab3.interfaces.iComunicaFragments
+import co.edu.udea.compumovil.gr02_20201.lab3.data.dao.PlaceDao
+import co.edu.udea.compumovil.gr02_20201.lab3.data.database.LabTresDB
+import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
 import co.edu.udea.compumovil.gr02_20201.lab3.R
-import co.edu.udea.compumovil.gr02_20201.lab3.Repositorio.PlaceRepository
-import co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.PlaceViewModel
-import co.edu.udea.compumovil.gr02_20201.lab3.ViewModel.PlaceViewModelFactory
+import co.edu.udea.compumovil.gr02_20201.lab3.repo.PlaceRepository
+import co.edu.udea.compumovil.gr02_20201.lab3.viewmodel.PlaceViewModel
+import co.edu.udea.compumovil.gr02_20201.lab3.viewmodel.PlaceViewModelFactory
 import kotlinx.android.synthetic.main.fragment_lugares.*
 import kotlin.collections.ArrayList
 
-class LugaresFragment : Fragment(), OnPlaceItemClickListener {
+class PlaceListFragment : Fragment(), OnPlaceItemClickListener {
     private lateinit var listaLugares: ArrayList<Place>
     private lateinit var placeViewModel: PlaceViewModel
 
@@ -33,10 +33,15 @@ class LugaresFragment : Fragment(), OnPlaceItemClickListener {
     private lateinit var actividad: Activity
     private lateinit var interfaceComunicaFragments: iComunicaFragments
     private lateinit var dataBase: LabTresDB
-    private lateinit var placeDao: PlaceDao
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dataBase= Room.databaseBuilder(requireContext(), LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
+
+        //val fab= add_button
+        //fab.setOnClickListener{
+            //val intent= Intent(requireContext(),)
+        //}
+
         return inflater.inflate(R.layout.fragment_lugares, container, false)
     }
 
@@ -82,4 +87,6 @@ class LugaresFragment : Fragment(), OnPlaceItemClickListener {
             //esto es necesario para establecer la comunicacion entre la lista y el detalle
         }
     }
+
+
 }

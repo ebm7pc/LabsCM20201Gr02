@@ -1,8 +1,8 @@
-package co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Dao
+package co.edu.udea.compumovil.gr02_20201.lab3.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import co.edu.udea.compumovil.gr02_20201.lab3.Persistencia.Entidades.Place
+import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
 
 @Dao
 interface PlaceDao {
