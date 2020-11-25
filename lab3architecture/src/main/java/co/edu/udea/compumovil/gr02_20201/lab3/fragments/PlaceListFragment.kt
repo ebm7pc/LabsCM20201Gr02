@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import co.edu.udea.compumovil.gr02_20201.lab3.adapters.OnPlaceItemClickListener
 import co.edu.udea.compumovil.gr02_20201.lab3.adapters.PlaceAdapter
@@ -35,7 +36,7 @@ class PlaceListFragment : Fragment(), OnPlaceItemClickListener {
     private lateinit var placeViewModel: PlaceViewModel
     private lateinit var adapter: PlaceAdapter
 
-    //Crear referencias para poder realizar la comunicación entre el fragment detalle
+    //Crear referencias para poder realizar la comunicación entre el fragment detalle:
     private lateinit var actividad: Activity
     private lateinit var interfaceComunicaFragments: iComunicaFragments
     private lateinit var dataBase: LabTresDB
@@ -55,10 +56,13 @@ class PlaceListFragment : Fragment(), OnPlaceItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //createViewModel()
-        //placeViewModel.guardarListaLugares(requireContext())
-        //listaLugares=placeViewModel.cargarLista(requireContext())
-        //adapter= PlaceAdapter(listaLugares,this)
+        createViewModel()
+        placeViewModel.guardarListaLugares(requireContext())
+        placeViewModel.wholePlaces.observe(viewLifecycleOwner, Observer {
+            adapter.setPlaces(it)
+        })
+        listaLugares = placeViewModel.cargarLista(requireContext())
+        adapter = PlaceAdapter(listaLugares, this)
         placesListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         placesListRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(), 1))
         placesListRecyclerView.adapter = PlaceAdapter(listaLugares, this)
@@ -66,15 +70,7 @@ class PlaceListFragment : Fragment(), OnPlaceItemClickListener {
         fab.setOnClickListener {
             lanzaFragmentNewPlace()
         }
-        //observableLiveData()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        createViewModel()
-        placeViewModel.wholePlaces.observe(viewLifecycleOwner, Observer {
-            adapter.setPlaces(it)
-        })
+        observableLiveData()
     }
 
     /**
@@ -88,18 +84,20 @@ class PlaceListFragment : Fragment(), OnPlaceItemClickListener {
         placeViewModel = ViewModelProvider(this, factory).get(PlaceViewModel::class.java)
     }
 
-    /*private fun observableLiveData(){
-        placeViewModel.allPlaces.observe(viewLifecycleOwner, Observer{place ->
+    /**
+     * Observable
+     */
+    private fun observableLiveData() {
+        placeViewModel.allPlaces.observe(viewLifecycleOwner, Observer { place ->
             place?.let { adapter.setPlaces(it as ArrayList<Place>) }
         })
-    }*/
+    }
 
     override fun onItemClick(item: Place, position: Int) {
         Toast.makeText(requireContext(), item.name, Toast.LENGTH_SHORT).show()
         interfaceComunicaFragments.enviarLugar(listaLugares[position])
 
     }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         //esto es necesario para establecer la comunicacion entre la lista y el detalle
@@ -112,7 +110,6 @@ class PlaceListFragment : Fragment(), OnPlaceItemClickListener {
             //esto es necesario para establecer la comunicacion entre la lista y el detalle
         }
     }
-
     /**
      * Prepara el fragment con el formulario de agregar lugar
      */
