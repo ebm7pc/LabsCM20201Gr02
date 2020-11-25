@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.lista_lugares.view.*
 
 class PlaceAdapter(var items: ArrayList<Place>, var clickListener: OnPlaceItemClickListener): RecyclerView.Adapter<PlaceViewHolder>() {
     //private var placeList= mutableListOf<Place>()
+    private var places = emptyList<Place>()
 
     override fun getItemCount()= items.size
 
@@ -25,6 +26,11 @@ class PlaceAdapter(var items: ArrayList<Place>, var clickListener: OnPlaceItemCl
         //holder.description.text= place.short_des
         //holder.image.setImageResource(place.img)
         holder.initialize(items.get(position), clickListener)
+    }
+
+    internal fun setPlaces(places: List<Place>) {
+        this.places = places
+        notifyDataSetChanged()
     }
 
 }

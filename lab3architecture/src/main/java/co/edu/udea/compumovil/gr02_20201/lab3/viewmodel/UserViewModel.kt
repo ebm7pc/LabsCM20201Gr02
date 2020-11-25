@@ -19,9 +19,6 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(private val repository: UserRepository): ViewModel() {
 //class UserViewModel(application: Application): AndroidViewModel(application) {
-    var username= ObservableField("")
-    var userpwd= ObservableField("")
-    var resultData= MutableLiveData<String>()
     private lateinit var placeDao: PlaceDao
     private lateinit var userDao: UserDao
     private lateinit var dataBase: LabTresDB
@@ -45,23 +42,4 @@ class UserViewModel(private val repository: UserRepository): ViewModel() {
         return factory
     }
 
-    fun guardarListaLugares(context: Context){
-        dataBase= Room.databaseBuilder(context.applicationContext, LabTresDB::class.java, "mi_db").allowMainThreadQueries().build()
-        placeDao= dataBase.lugarDao()
-        val lugar = listOf<Place>(
-            Place(1,"Santorini", Descriptions().santorini, LongDescriptions().santorini, R.drawable.santorini1),
-            Place(2,"Naxos", Descriptions().naxos, LongDescriptions().naxos, R.drawable.naxos1),
-            Place(3,"Rodas", Descriptions().rodas, LongDescriptions().rodas, R.drawable.rodas1),
-            Place(4,"Mykonos", Descriptions().miconos, LongDescriptions().miconos, R.drawable.mykonos1),
-            Place(5,"Olimpia", Descriptions().olimpia, LongDescriptions().olimpia, R.drawable.olimpia1)
-        )
-        if (esTablaLugaresVacia()){ placeDao.insertAll(lugar)}
-    }
-
-    fun esTablaLugaresVacia():Boolean{
-        var retorno=false
-        val lugar= placeDao.getPlaces()
-        if (lugar.isEmpty()){retorno=true}
-        return retorno
-    }
 }

@@ -17,6 +17,9 @@ import co.edu.udea.compumovil.gr02_20201.lab3.R
 import co.edu.udea.compumovil.gr02_20201.lab3.repo.UserRepository
 import co.edu.udea.compumovil.gr02_20201.lab3.viewmodel.UserViewModel
 import co.edu.udea.compumovil.gr02_20201.lab3.viewmodel.UserViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
 
 class RegistryFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
@@ -27,15 +30,22 @@ class RegistryFragment : Fragment() {
 
     private lateinit var dataBase: LabTresDB
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private var contx: CoroutineContext = Dispatchers.IO
+    private lateinit var scope: CoroutineScope
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_registry, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editTextUsuario= view.findViewById(R.id.editTextRegUser)
-        editTextCorreo= view.findViewById(R.id.editTextRegEmail)
+        editTextUsuario = view.findViewById(R.id.editTextRegUser)
+        editTextCorreo = view.findViewById(R.id.editTextRegEmail)
         editTextPass= view.findViewById(R.id.editTextRegPassword)
         buttonRegistro= view.findViewById(R.id.buttonRegGuardar)
 
@@ -45,11 +55,12 @@ class RegistryFragment : Fragment() {
         buttonRegistro.setOnClickListener { registraUsuario()}
     }
 
-    private fun createViewModel(){
-        val userDao: UserDao= LabTresDB.getDatabaseInstance(requireContext()).usuarioDao()
-        val repository= UserRepository(dataBase, userDao)
-        val factory= UserViewModelFactory(repository)
-        viewModel= ViewModelProvider(this, factory).get(UserViewModel::class.java)
+    private fun createViewModel() {
+        scope = CoroutineScope(contx)
+        val userDao: UserDao = LabTresDB.getDatabaseInstance(requireContext(), scope).usuarioDao()
+        val repository = UserRepository(dataBase, userDao)
+        val factory = UserViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
     }
 
 

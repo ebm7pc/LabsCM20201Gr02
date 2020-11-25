@@ -11,7 +11,7 @@ interface PlaceDao {
     fun getPlaces(): Array<Place>
 
     @Query("SELECT * FROM place_table")
-    fun getAllPlaces():LiveData<List<Place>>//No requiere corrutina debido a que con Room se retorna un LiveData desde este nivel
+    fun getAllPlaces(): LiveData<List<Place>>//No requiere suspend debido a que con Room se retorna un LiveData desde este nivel
 
     //@Query("SELECT * FROM Place")
     //LiveData<List<Place>> getAllPlaces
