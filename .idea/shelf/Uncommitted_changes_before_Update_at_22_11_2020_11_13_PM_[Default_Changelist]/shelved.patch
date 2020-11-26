@@ -1,0 +1,28 @@
+Index: Lab1-UI/release/output-metadata.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"version\": 2,\r\n  \"artifactType\": {\r\n    \"type\": \"APK\",\r\n    \"kind\": \"Directory\"\r\n  },\r\n  \"applicationId\": \"co.edu.udea.compumovil.gr02_20201.lab2\",\r\n  \"variantName\": \"processReleaseResources\",\r\n  \"elements\": [\r\n    {\r\n      \"type\": \"SINGLE\",\r\n      \"filters\": [],\r\n      \"versionCode\": 1,\r\n      \"versionName\": \"1.0\",\r\n      \"outputFile\": \"lab2activities-release.apk\"\r\n    }\r\n  ]\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Lab1-UI/release/output-metadata.json	(revision 7ffe51f681b3a50ee1575f58e31745ebb638833e)
++++ Lab1-UI/release/output-metadata.json	(date 1606104609958)
+@@ -4,7 +4,7 @@
+     "type": "APK",
+     "kind": "Directory"
+   },
+-  "applicationId": "co.edu.udea.compumovil.gr02_20201.lab2",
++  "applicationId": "co.edu.udea.compumovil.grXX_20201.lab3",
+   "variantName": "processReleaseResources",
+   "elements": [
+     {
+@@ -12,7 +12,7 @@
+       "filters": [],
+       "versionCode": 1,
+       "versionName": "1.0",
+-      "outputFile": "lab2activities-release.apk"
++      "outputFile": "lab3architecture-release.apk"
+     }
+   ]
+ }
+\ No newline at end of file

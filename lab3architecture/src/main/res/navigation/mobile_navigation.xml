@@ -2,47 +2,4 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@id/loginFragment">
-
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_registryFragment2"
-            app:destination="@id/registryFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_personasFragment"
-            app:destination="@id/lugaresFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registryFragment"
-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.RegistryFragment"
-        android:label="fragment_registry"
-        tools:layout="@layout/fragment_registry" >
-        <action
-            android:id="@+id/action_registryFragment_to_loginFragment2"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/lugaresFragment"
-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.LugaresFragment"
-        android:label="PersonasFragment"
-        tools:layout="@layout/fragment_lugares">
-        <action
-            android:id="@+id/action_lugaresFragment_to_detalleLugarFragment"
-            app:destination="@id/detalleLugarFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detalleLugarFragment"
-        android:name="co.edu.udea.compumovil.gr02_20201.lab3.Fragments.DetalleLugarFragment"
-        android:label="fragment_detalle_lugar"
-        tools:layout="@layout/fragment_detalle_lugar" >
-        <action
-            android:id="@+id/action_detallePersonaFragment_to_personasFragment"
-            app:destination="@id/lugaresFragment" />
-    </fragment>
-
-</navigation>
+    android:id="@+id/mobile_navigation"/>

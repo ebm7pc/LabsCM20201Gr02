@@ -11,4 +11,5 @@
     <string name="iniciar_sesion">Iniciar sesión</string>
     <string name="usuario">Usuario</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="fab_content_desc">content_desc</string>
 </resources>
