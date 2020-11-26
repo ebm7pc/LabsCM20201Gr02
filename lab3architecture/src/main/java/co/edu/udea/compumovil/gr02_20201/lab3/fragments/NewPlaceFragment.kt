@@ -2,9 +2,7 @@ package co.edu.udea.compumovil.gr02_20201.lab3.fragments
 
 import android.app.Activity
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +10,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import co.edu.udea.compumovil.gr02_20201.lab3.Descriptions
-import co.edu.udea.compumovil.gr02_20201.lab3.LongDescriptions
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import co.edu.udea.compumovil.gr02_20201.lab3.R
-import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
-import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.User
 import co.edu.udea.compumovil.gr02_20201.lab3.viewmodel.NewPlaceViewModel
 import kotlinx.android.synthetic.main.new_place_fragment.*
 

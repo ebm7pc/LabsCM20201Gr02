@@ -11,7 +11,7 @@ interface UserDao {
     fun getUser(e_mail: String, password:String): User
 
     @Query("SELECT * FROM user_table WHERE user_email = :e_mail and user_pwd = :password")
-    fun traerUser(e_mail: String, password:String): LiveData<User>
+    fun bringUser(e_mail: String, password: String): LiveData<User>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insert(usuario: User)

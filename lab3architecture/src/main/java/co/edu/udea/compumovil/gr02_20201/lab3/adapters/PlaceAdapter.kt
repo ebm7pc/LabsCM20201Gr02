@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
 import co.edu.udea.compumovil.gr02_20201.lab3.R
-import kotlinx.android.synthetic.main.lista_lugares.view.*
+import kotlinx.android.synthetic.main.item_list.view.*
 
 class PlaceAdapter(var items: ArrayList<Place>, var clickListener: OnPlaceItemClickListener): RecyclerView.Adapter<PlaceViewHolder>() {
     //private var placeList= mutableListOf<Place>()
@@ -16,7 +16,9 @@ class PlaceAdapter(var items: ArrayList<Place>, var clickListener: OnPlaceItemCl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
         lateinit var placeViewHolder: PlaceViewHolder
-        placeViewHolder = PlaceViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.lista_lugares, parent, false))
+        placeViewHolder = PlaceViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
+        )
         return placeViewHolder
     }
 

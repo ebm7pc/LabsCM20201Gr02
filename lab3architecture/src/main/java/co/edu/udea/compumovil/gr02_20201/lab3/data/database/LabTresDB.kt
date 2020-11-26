@@ -12,15 +12,15 @@ import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [User::class, Place::class], version = 1)
 abstract class LabTresDB : RoomDatabase(){
-    abstract fun usuarioDao(): UserDao
-    abstract fun lugarDao(): PlaceDao
+    abstract fun usrDao(): UserDao
+    abstract fun plcDao(): PlaceDao
 
     /*
      *singleton para evitar varias instancias de la bd
      */
-    companion object{
+    companion object {
         @Volatile
-        private var INSTANCE: LabTresDB?= null
+        private var INSTANCE: LabTresDB? = null
         fun getDatabaseInstance(context: Context, scope: CoroutineScope): LabTresDB {
             synchronized(this) {
                 var instance = INSTANCE

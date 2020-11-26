@@ -5,7 +5,6 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
-import co.edu.udea.compumovil.gr02_20201.lab3.R
 import co.edu.udea.compumovil.gr02_20201.lab3.data.database.LabTresDB
 import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
 import co.edu.udea.compumovil.gr02_20201.lab3.repo.PlaceRepository
@@ -20,7 +19,7 @@ class NewPlaceViewModel(application: Application) : AndroidViewModel(application
         val dataBase =
             Room.databaseBuilder(context.applicationContext, LabTresDB::class.java, "mi_db")
                 .allowMainThreadQueries().build()
-        val placeDao = dataBase.lugarDao()
+        val placeDao = dataBase.plcDao()
         repository = PlaceRepository(dataBase, placeDao)
         repository.insert(place)
     }
@@ -31,6 +30,6 @@ class NewPlaceViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun processShortDescription(longDesc: String): String {
-        return longDesc.substring(0, 10) + "..."
+        return longDesc.substring(0, 20) + "..."
     }
 }

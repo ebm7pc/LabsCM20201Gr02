@@ -1,23 +1,24 @@
 package co.edu.udea.compumovil.gr02_20201.lab3
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import co.edu.udea.compumovil.gr02_20201.lab3.fragments.PlaceDetailFragment
+import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
 import co.edu.udea.compumovil.gr02_20201.lab3.fragments.LoginFragment
+import co.edu.udea.compumovil.gr02_20201.lab3.fragments.PlaceDetailFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.fragments.PlaceListFragment
 import co.edu.udea.compumovil.gr02_20201.lab3.interfaces.iComunicaFragments
-import co.edu.udea.compumovil.gr02_20201.lab3.data.entities.Place
 import com.google.android.material.navigation.NavigationView
 
 
-class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, iComunicaFragments {
+class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    iComunicaFragments {
     var drawerLayout: DrawerLayout? = null
     var actionBarDrawerToggle: ActionBarDrawerToggle? = null
     var toolbar: Toolbar? = null
@@ -32,22 +33,18 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //viewModel= ViewModelProvider(this).get(UserViewModel::class.java)
-
         toolbar = findViewById(R.id.toolbar)
-        //setSupportActionBar(toolbar)
         drawerLayout = findViewById(R.id.drawer)
         navigationView = findViewById(R.id.navigationView)
-        //lo sgt se implementa luego de haber implementado NavigationView.OnNavigationItemSelectedListener
         navigationView!!.setNavigationItemSelectedListener(this)
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
+        actionBarDrawerToggle =
+            ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout!!.addDrawerListener(actionBarDrawerToggle!!)
         actionBarDrawerToggle!!.isDrawerIndicatorEnabled = true
         actionBarDrawerToggle!!.syncState()
         //cargar fragment principal en la actividad
         fragmentManager = supportFragmentManager
         fragmentTransaction = fragmentManager!!.beginTransaction()
-        //fragmentTransaction!!.add(R.id.container_fragment, LoginFragment())
         fragmentTransaction!!.replace(R.id.container_fragment, LoginFragment())
         fragmentTransaction!!.commit()
     }
@@ -70,10 +67,8 @@ class LoginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         return false
     }
 
-    override fun enviarLugar(lugar: Place) {
-        //gracias a haber implementado de la interface "iComunicaFragments" se tiene la implementacion del metodo enviarLugar
-        //o mejor dicho este metodo.
-        //Aqui se realiza toda la logica necesaria para poder realizar el envio
+    override fun onClickSendPlace(lugar: Place) {
+        //gracias a haber implementado de la interface "iComunicaFragments" se tiene la implementacion de este metodo.
         placeDetailFragment = PlaceDetailFragment()
         //objeto bundle para transportar la informacion
         val bundleEnvio = Bundle()

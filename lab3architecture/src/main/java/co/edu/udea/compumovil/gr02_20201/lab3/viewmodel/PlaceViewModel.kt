@@ -1,7 +1,10 @@
 package co.edu.udea.compumovil.gr02_20201.lab3.viewmodel
 
 import android.content.Context
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import co.edu.udea.compumovil.gr02_20201.lab3.Descriptions
 import co.edu.udea.compumovil.gr02_20201.lab3.LongDescriptions
@@ -14,21 +17,21 @@ import co.edu.udea.compumovil.gr02_20201.lab3.repo.PlaceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.ArrayList
+import java.util.*
 
-class PlaceViewModel(private var repository: PlaceRepository): ViewModel() {
+class PlaceViewModel(private var repository: PlaceRepository) : ViewModel() {
     //class PlaceViewModel(application: Application): AndroidViewModel(application) {
     private var apiService = RetrofitFactory.apiService()
     private lateinit var dataBase: LabTresDB
     private lateinit var placeDao: PlaceDao
-    private var listaLugares: ArrayList<Place>
+    private var listPlaces: ArrayList<Place>
     private var places = MutableLiveData<List<Place>>()
     var wholePlaces: LiveData<List<Place>> = places
     val allPlaces: LiveData<List<Place>>
 
     init {
         getPosts()
-        listaLugares = ArrayList()
+        listPlaces = ArrayList()
         allPlaces = repository.places
     }
 
@@ -36,11 +39,11 @@ class PlaceViewModel(private var repository: PlaceRepository): ViewModel() {
         repository.insert(place)
     }
 
-    fun guardarListaLugares(context: Context) {
+    fun savePlaceList(context: Context) {
         dataBase = Room.databaseBuilder(context.applicationContext, LabTresDB::class.java, "mi_db")
             .allowMainThreadQueries().build()
-        placeDao = dataBase.lugarDao()
-        val lugar = listOf<Place>(
+        placeDao = dataBase.plcDao()
+        val place = listOf<Place>(
             Place(
                 1,
                 "Santorini",
@@ -65,39 +68,39 @@ class PlaceViewModel(private var repository: PlaceRepository): ViewModel() {
                 R.drawable.olimpia1
             )
         )
-        if (esTablaLugaresVacia()) {
-            placeDao.insertAll(lugar)
+        if (isPlacesListEmpty()) {
+            placeDao.insertAll(place)
         }
     }
 
-    fun esTablaLugaresVacia(): Boolean {
-        var retorno = false
-        val lugar = placeDao.getPlaces()
-        if (lugar.isEmpty()) {
-            retorno = true
+    fun isPlacesListEmpty(): Boolean {
+        var ret = false
+        val places = placeDao.getPlaces()
+        if (places.isEmpty()) {
+            ret = true
         }
-        return retorno
+        return ret
     }
 
-    fun cargarLista(context: Context): ArrayList<Place> {
-        var nombre: String?
-        var desC: String?
-        var desL: String?
+    fun loadList(context: Context): ArrayList<Place> {
+        var name: String?
+        var Sdesc: String?
+        var Ldesc: String?
         var img: Int
-        listaLugares = ArrayList()
+        listPlaces = ArrayList()
         dataBase = Room.databaseBuilder(context.applicationContext, LabTresDB::class.java, "mi_db")
             .allowMainThreadQueries().build()
-        placeDao = dataBase.lugarDao()
-        val lugares = placeDao.getPlaces()
-        val tama= placeDao.getPlaces().size
-        for (i in 0 until tama) {
-            nombre = lugares[i].name
-            desC = lugares[i].short_des
-            desL = lugares[i].long_desc
-            img = lugares[i].img
-            listaLugares.add(Place(0, nombre, desC, desL, img))
+        placeDao = dataBase.plcDao()
+        val places = placeDao.getPlaces()
+        val size = placeDao.getPlaces().size
+        for (i in 0 until size) {
+            name = places[i].name
+            Sdesc = places[i].short_des
+            Ldesc = places[i].long_desc
+            img = places[i].img
+            listPlaces.add(Place(0, name, Sdesc, Ldesc, img))
         }
-        return listaLugares
+        return listPlaces
     }
 
     fun getPosts() {
@@ -111,5 +114,4 @@ class PlaceViewModel(private var repository: PlaceRepository): ViewModel() {
             apiService.requestPlaces()
         }
     }
-
 }
